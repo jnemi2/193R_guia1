@@ -25,8 +25,3 @@ float dot(Vector3 vec1, Vector3 vec2)
 {
     return (vec1.x*vec2.x + vec1.y*vec2.y + vec1.z*vec2.z);
 }
-
-void print(Vector3 vec)
-{
-    printf("(%.3f, %.3f, %.3f)", vec.x, vec.y, vec.z);
-}

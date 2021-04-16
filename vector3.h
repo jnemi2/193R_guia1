@@ -14,7 +14,6 @@ typedef struct {
 Vector3 sum(Vector3 vec1, Vector3 vec2);
 double norm(Vector3 vec);
 float dot(Vector3 vec1, Vector3 vec2);
-void print(Vector3);
 
 
 #endif //INC_193R_GUIA1_VECTOR3_H
