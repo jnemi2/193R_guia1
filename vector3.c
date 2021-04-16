@@ -3,7 +3,6 @@
 //
 
 #include "vector3.h"
-#include <stdio.h>
 #include <math.h>
 
 
@@ -18,7 +17,7 @@ Vector3 sum(Vector3 vec1, Vector3 vec2)
 
 double norm(Vector3 vec)
 {
-    return sqrt(vec.x*vec.x + vec.y*vec.y + vec.z*vec.z);
+    return sqrt(dot(vec, vec));
 }
 
 float dot(Vector3 vec1, Vector3 vec2)
