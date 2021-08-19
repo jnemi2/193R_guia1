@@ -117,6 +117,7 @@ void delete(List *list, int index)
             prev->next = aux->next;
         }
 
+        free(aux->value); //Since value is a pointer, this line should delete the actual content of the element
         free(aux);
         list->length = list->length - 1;
     }
@@ -128,6 +129,7 @@ void clear(List *list)
     for (; list->first != NULL; free(aux))
     {
         aux = (Node *) list->first;
+        free(aux->value); //Since value is a pointer, this line should delete the actual content of the element
         list->first = aux->next;
     }
     free(list);

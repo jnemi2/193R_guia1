@@ -4,8 +4,9 @@
 
 #ifndef INC_193R_GUIA1_LIST_H
 #define INC_193R_GUIA1_LIST_H
+#include "product.h"
 
-#define TYPE int
+#define TYPE Product*
 
 typedef struct node
 {
