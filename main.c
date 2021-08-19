@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "list.h"
-
+#include "client.h"
 
 int main() {
     printf("Hello, World!\n");
@@ -16,7 +16,7 @@ int main() {
         printf("%s, ", read(stock, i)->name);
     printf("\n");
 
-
+    sell(stock);
 
 
     clear(stock);

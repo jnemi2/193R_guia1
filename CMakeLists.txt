@@ -3,4 +3,4 @@ project(193R_guia1 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(193R_guia1 main.c list.c list.h product.c product.h)
+add_executable(193R_guia1 main.c list.c list.h product.c product.h client.c client.h validate.c validate.h)

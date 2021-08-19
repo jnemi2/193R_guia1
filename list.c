@@ -19,6 +19,13 @@ Node *newNode(TYPE val)
     return aux;
 }
 
+void swap(TYPE aux1, TYPE aux2)
+{
+    TYPE temp = aux1;
+    *aux1 = *aux2;
+    *aux2 = *temp;
+}
+
 List *newList()
 {
     List* aux = (List*) malloc(sizeof (List));
@@ -133,4 +140,15 @@ void clear(List *list)
         list->first = aux->next;
     }
     free(list);
+}
+
+void sort(List* list)
+{
+    int i, j;
+    for (i = 0; i < list->length-1; i++)
+        for (j = 0; j < list->length-i-1; j++)
+        {
+            if (read(list, j)->code > read(list, j+1)->code)
+                swap(read(list, j), read(list, j+1));
+        }
 }

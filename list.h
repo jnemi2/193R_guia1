@@ -29,6 +29,7 @@ typedef struct list
  */
 
 Node* newNode(TYPE);
+void swap(TYPE, TYPE);
 List* newList();
 void append(List*, TYPE);
 void insert(List*, TYPE, int);
@@ -36,5 +37,6 @@ TYPE read(List*, int);
 void join(List*, List*);
 void delete(List*, int);
 void clear(List*);
+void sort(List*);
 
 #endif //INC_193R_GUIA1_LIST_H
