@@ -40,6 +40,11 @@ int main() {
     //INSERT ORDERED
     insertOrdered(result, 100);
     insertOrdered(result, 4);
+    insertOrdered(result, 1);
+
+    //REMOVE OCCURRENCES
+    removeOccurrences(result, 1);
+    removeOccurrences(result, 5);
     for (int k = 0; k < result->length; k++)
         printf("%d, ", read(result, k));
     printf("\n");

@@ -173,7 +173,7 @@ void insertOrdered(List* list, int value) {
         Node* tempNext;
         for (; aux != NULL; aux = (Node *) aux->next) {
             tempNext = (Node *) aux->next;
-            if (tempNext == NULL || (value < tempNext->value && value > aux->value))
+            if (tempNext == NULL || (value < tempNext->value && value >= aux->value))
                 break;
         }
         toInsert->next = (struct Node *) tempNext;
@@ -181,4 +181,28 @@ void insertOrdered(List* list, int value) {
     }
 
     list->length = list->length + 1;
+}
+
+void removeOccurrences(List *list, int value) {
+    Node* aux = (Node*) list->first;
+    Node* auxNext = (Node*) aux->next;
+    Node* toDelete;
+
+    for (; aux != NULL; aux = (Node*) aux->next){
+        auxNext = (Node*) aux->next;
+        if (auxNext != NULL && auxNext->value == value){
+            //delete auxNext
+            toDelete = auxNext;
+            aux->next = auxNext->next;
+            auxNext->next = NULL;
+            free(auxNext);
+            list->length = list->length - 1;
+        }
+    }
+    Node* first = (Node*) list->first;
+    if (first->value == value){
+        list->first = (struct Node *) first->next;
+        free(first);
+        list->length = list->length - 1;
+    }
 }
