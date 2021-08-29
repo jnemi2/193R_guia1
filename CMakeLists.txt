@@ -3,4 +3,4 @@ project(193R_guia1 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(193R_guia1 main.c)
+add_executable(193R_guia1 main.c circularqueue.c circularqueue.h)
