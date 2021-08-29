@@ -132,3 +132,53 @@ void clear(List *list)
     }
     free(list);
 }
+
+List *merge(List *list1, List *list2) {
+    List* result = newList();
+    Node* aux1 = (Node*) list1->first;
+    Node* aux2 = (Node*) list2->first;
+    while (aux1 != NULL && aux2 != NULL){
+        if (aux1->value < aux2->value){
+            append(result, aux1->value);
+            aux1 = (Node*) aux1->next;
+        }else{
+            append(result, aux2->value);
+            aux2 = (Node*) aux2->next;
+        }
+    }
+    if (aux1 == NULL)
+        aux1 = aux2;
+    for (;aux1 != NULL; aux1 = (Node*) aux1->next)
+        append(result, aux1->value);
+    return result;
+}
+
+int find(Node* node, int currentIndex, int value) {
+    if (node == NULL){
+        //Element not found
+        return -1;
+    }else if (node->value == value){
+        //Element found
+        return currentIndex;
+    }else
+        return (find((Node*) node->next, currentIndex+1, value));
+}
+
+void insertOrdered(List* list, int value) {
+    Node* aux = (Node*) list->first;
+    Node* toInsert = newNode(value);
+    if (aux == NULL)
+        list->first = (struct Node *) newNode(value);
+    else{
+        Node* tempNext;
+        for (; aux != NULL; aux = (Node *) aux->next) {
+            tempNext = (Node *) aux->next;
+            if (tempNext == NULL || (value < tempNext->value && value > aux->value))
+                break;
+        }
+        toInsert->next = (struct Node *) tempNext;
+        aux->next = (struct Node * ) toInsert;
+    }
+
+    list->length = list->length + 1;
+}

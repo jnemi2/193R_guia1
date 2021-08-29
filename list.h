@@ -35,5 +35,9 @@ TYPE read(List*, int);
 void join(List*, List*);
 void delete(List*, int);
 void clear(List*);
+List* merge(List* list1, List* list2);
+int find(Node* first, int currentIndex, int value); //recursive lookup
+void insertOrdered(List* list, int value);
+
 
 #endif //INC_193R_GUIA1_LIST_H
