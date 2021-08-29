@@ -5,12 +5,12 @@
 #ifndef INC_193R_GUIA1_LIST_H
 #define INC_193R_GUIA1_LIST_H
 
-typedef struct word {
-    char word[35];
-    int frequency;
-} Word;
+typedef struct person {
+    char name[35];
+    int age;
+} Person;
 
-#define TYPE Word
+#define TYPE Person
 
 typedef struct node
 {
@@ -32,14 +32,15 @@ typedef struct list
  *
  */
 
-Node* newNode(char* word);
+Node* newNode(char* word, int age);
 List* newList();
-void append(List *list, char* word);
-void insert(List*, char* word, int);
+void append(List *list, char* word, int age);
+void insert(List*, char* word, int age, int index);
 TYPE* read(List*, int);
 void join(List*, List*);
 void delete(List*, int);
 void clear(List*);
+float averageAge(List*);
 
 
 #endif //INC_193R_GUIA1_LIST_H

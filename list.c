@@ -7,7 +7,7 @@
 #include <string.h>
 #include "list.h"
 
-Node *newNode(char* word)
+Node *newNode(char* word, int age)
 {
     Node* aux = (Node*) malloc(sizeof (Node));
     if (aux == NULL)
@@ -15,8 +15,8 @@ Node *newNode(char* word)
         printf("Not enough memory\n");
         exit(-1);
     }
-    strcpy(aux->value.word, word);
-    aux->value.frequency = 1;
+    strcpy(aux->value.name, word);
+    aux->value.age = age;
     aux->next = NULL;
     return aux;
 }
@@ -34,9 +34,9 @@ List *newList()
     return aux;
 }
 
-void append(List *list, char* word)
+void append(List *list, char* word, int age)
 {
-    Node *element = (Node *) newNode(word);
+    Node *element = (Node *) newNode(word, age);
     Node *aux = (Node *) list->first;
     if (aux == NULL)
     {
@@ -50,13 +50,13 @@ void append(List *list, char* word)
     list->length = list->length + 1;
 }
 
-void insert(List *list, char* word, int index)
+void insert(List *list, char* word, int age, int index)
 {
     if (index < 0 || index >= list->length)
         printf("Index out of range\n");
     else
     {
-        Node *element = newNode(word);
+        Node *element = newNode(word, age);
         if (index == 0)
         {   //Insertion in first position
             element->next = list->first;
@@ -133,4 +133,14 @@ void clear(List *list)
         list->first = aux->next;
     }
     free(list);
+}
+
+float averageAge(List * people) {
+    float average = 0;
+    for (Node* aux = (Node*) people->first; aux != NULL; aux = (Node*) aux->next){
+        average += (float) aux->value.age;
+    }
+    if (people->length != 0)
+        average = average / (float) people->length;
+    return average;
 }
