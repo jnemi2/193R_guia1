@@ -5,7 +5,13 @@
 #ifndef INC_193R_GUIA1_LIST_H
 #define INC_193R_GUIA1_LIST_H
 
-#define TYPE int
+typedef struct property {
+    char neighborhood[25];
+    unsigned int rooms;
+    float price;
+} Property;
+
+#define TYPE Property
 
 typedef struct node
 {
@@ -27,13 +33,15 @@ typedef struct list
  *
  */
 
-Node* newNode(TYPE);
+Node* newNode(char* neighborhood, int rooms, float price);
 List* newList();
-void append(List*, TYPE);
-void insert(List*, TYPE, int);
-TYPE read(List*, int);
+void append(List *list, char* neighborhood, int rooms, float price);
+void insert(List*, char* neighborhood, int rooms, float price, int);
+TYPE* read(List*, int);
 void join(List*, List*);
 void delete(List*, int);
 void clear(List*);
+
+void filter(List* homes);
 
 #endif //INC_193R_GUIA1_LIST_H

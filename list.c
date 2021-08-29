@@ -4,9 +4,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "list.h"
 
-Node *newNode(TYPE val)
+Node *newNode(char* neighborhood, int rooms, float price)
 {
     Node* aux = (Node*) malloc(sizeof (Node));
     if (aux == NULL)
@@ -14,7 +15,9 @@ Node *newNode(TYPE val)
         printf("Not enough memory\n");
         exit(-1);
     }
-    aux->value = val;
+    strcpy(aux->value.neighborhood, neighborhood);
+    aux->value.rooms = rooms;
+    aux->value.price = price;
     aux->next = NULL;
     return aux;
 }
@@ -32,9 +35,9 @@ List *newList()
     return aux;
 }
 
-void append(List *list, TYPE value)
+void append(List *list, char* neighborhood, int rooms, float price)
 {
-    Node *element = (Node *) newNode(value);
+    Node *element = (Node *) newNode(neighborhood, rooms, price);
     Node *aux = (Node *) list->first;
     if (aux == NULL)
     {
@@ -48,13 +51,13 @@ void append(List *list, TYPE value)
     list->length = list->length + 1;
 }
 
-void insert(List *list, TYPE value, int index)
+void insert(List *list, char* neighborhood, int rooms, float price, int index)
 {
     if (index < 0 || index >= list->length)
         printf("Index out of range\n");
     else
     {
-        Node *element = newNode(value);
+        Node *element = newNode(neighborhood, rooms, price);
         if (index == 0)
         {   //Insertion in first position
             element->next = list->first;
@@ -75,7 +78,7 @@ void insert(List *list, TYPE value, int index)
     }
 }
 
-TYPE read(List *list, int index)
+TYPE* read(List *list, int index)
 {
     Node *aux = NULL;
     if (index < 0 || index >= list->length)
@@ -86,7 +89,7 @@ TYPE read(List *list, int index)
         for (int i = 0; i < index; i++)
             aux = (Node *) aux->next;
     }
-    return aux->value;
+    return &(aux->value);
 }
 
 void join(List *list, List *extra)
@@ -131,4 +134,30 @@ void clear(List *list)
         list->first = aux->next;
     }
     free(list);
+}
+
+void filter(List *homes) {
+    List* filtered = newList();
+    Property* aux;
+    char neighbourhood[25];
+    int minRooms;
+    float maxPrice;
+    printf("Please, enter the neighborhood: ");
+    gets(neighbourhood);
+    //gets(neighbourhood);
+    printf("Please, enter the minimum of rooms: ");
+    scanf("%d", &minRooms);
+    printf("Please, enter the maximum price: ");
+    scanf("%f", &maxPrice);
+    printf("\n");
+    for (int i = 0; i < homes->length; i++){
+        aux = read(homes, i);
+        if (strcmp(neighbourhood, aux->neighborhood) == 0 &&
+            aux->rooms >= minRooms && aux->price <= maxPrice){
+            append(filtered, aux->neighborhood, aux->rooms, aux->price);
+            printf("%s. Rooms: %d. Price: $%.2f\n", aux->neighborhood, aux->rooms, aux->price);
+        }
+    }
+
+    clear(filtered);
 }
