@@ -12,8 +12,8 @@ void initializeQueue(CircularQueue* cQueue) {
 }
 
 void enqueue(CircularQueue *cQueue, int value) {
-    if (full(cQueue))
-        printf("Error: unable to enqueue element in full circular queue\n");
+    if (isFull(cQueue))
+        printf("Error: unable to enqueue element in isFull circular queue\n");
     else{
         cQueue->queue[cQueue->current] = value;
         cQueue->current = next(cQueue->current);
@@ -22,20 +22,20 @@ void enqueue(CircularQueue *cQueue, int value) {
 
 TYPE dequeue(CircularQueue *cQueue) {
     TYPE toRetrieve = -1;
-    if (!empty(cQueue)){
+    if (!isEmpty(cQueue)){
         toRetrieve = cQueue->queue[cQueue->first];
         cQueue->first = next(cQueue->first);
     }
     return toRetrieve;
 }
 
-int full(CircularQueue *cQueue) {
+int isFull(CircularQueue *cQueue) {
     if (next(cQueue->current) == cQueue->first)
         return 1;
     return 0;
 }
 
-int empty(CircularQueue* cQueue) {
+int isEmpty(CircularQueue* cQueue) {
     if (cQueue->current == cQueue->first)
         return 1;
     return 0;

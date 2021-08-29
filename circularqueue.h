@@ -17,8 +17,8 @@ typedef struct circularQueue{
 void initializeQueue(CircularQueue* cQueue);
 void enqueue(CircularQueue* cQueue, TYPE value);
 TYPE dequeue(CircularQueue* cQueue);
-int full(CircularQueue* cQueue);
-int empty(CircularQueue* cQueue);
+int isFull(CircularQueue* cQueue);
+int isEmpty(CircularQueue* cQueue);
 int next(int index);
 
 

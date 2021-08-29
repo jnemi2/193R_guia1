@@ -14,7 +14,7 @@ int main() {
     enqueue(&queue, 6);
     enqueue(&queue, 7);
 
-    while (!empty(&queue)){
+    while (!isEmpty(&queue)){
         printf("%d, ", dequeue(&queue));
     }
     printf("\n");
