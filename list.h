@@ -35,5 +35,7 @@ TYPE read(List*, int);
 void join(List*, List*);
 void delete(List*, int);
 void clear(List*);
+int findMax(List*);
+int findMin(List*);
 
 #endif //INC_193R_GUIA1_LIST_H

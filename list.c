@@ -132,3 +132,41 @@ void clear(List *list)
     }
     free(list);
 }
+
+int findMax(List* list){
+    int maxIndex = -1;
+    int value;
+    if (list->length > 0) {
+        Node* aux = (Node*) list->first;
+        maxIndex = 0;
+        value = aux->value;
+        int currentIndex = 0;
+        for (;aux != NULL; aux = (Node*) aux->next){
+            if (value < aux->value){
+                maxIndex = currentIndex;
+                value = aux->value;
+            }
+            currentIndex++;
+        }
+    }
+    return maxIndex;
+}
+
+int findMin(List* list){
+    int minIndex = -1;
+    int value;
+    if (list->length > 0) {
+        Node* aux = (Node*) list->first;
+        minIndex = 0;
+        value = aux->value;
+        int currentIndex = 0;
+        for (;aux != NULL; aux = (Node*) aux->next){
+            if (value > aux->value){
+                minIndex = currentIndex;
+                value = aux->value;
+            }
+            currentIndex++;
+        }
+    }
+    return minIndex;
+}
