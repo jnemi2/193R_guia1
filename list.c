@@ -150,6 +150,8 @@ List *merge(List *list1, List *list2) {
         aux1 = aux2;
     for (;aux1 != NULL; aux1 = (Node*) aux1->next)
         append(result, aux1->value);
+
+    result->length = list1->length + list2->length;
     return result;
 }
 
